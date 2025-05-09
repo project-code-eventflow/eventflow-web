@@ -59,7 +59,7 @@ const de = {
     title:
       "Werde Teil unseres <br/> <span class='highlight-text'>Community-Ökosystems</span> mit The Uniflow",
     description:
-      "Mit uns entwickelt sich das Universitäts-Event-Ökosystem weiter und verbindet Studierende und Clubs. Tausende Events und Hunderttausende Studierende vereinen sich auf unserer Plattform.",
+      "Mit uns entwickelt sich das Universitäts-Event-Ökosystem weiter und verbindet Studierende und Clubs. De statistieken hier worden elke week bijgewerkt met echte gegevens als onderdeel van deze transformatie.",
     downloadButton: "JETZT HERUNTERLADEN",
     stats: {
       universities: "Universitäten",
@@ -168,7 +168,7 @@ const de = {
     emailLabel: "E-Mail",
     whatsappLabel: "Whatsapp Kontakt",
     instagramLabel: "Instagram",
-    email: "info@theunifloapp.com",
+    email: "info@theuniflow.com",
     phone: "+90 500 123 45 67",
     instagramText: "DM",
   },

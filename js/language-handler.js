@@ -258,6 +258,19 @@ class LanguageHandler {
       const submitButton =
         clubRegistrationSection.querySelector(".btn.puprple_btn");
 
+      // Update form field placeholders
+      const formFields =
+        clubRegistrationSection.querySelectorAll(".form-control");
+      if (formFields.length >= 7 && t.clubRegistration.formFields) {
+        formFields[0].placeholder = t.clubRegistration.formFields.fullName;
+        formFields[1].placeholder = t.clubRegistration.formFields.email;
+        formFields[2].placeholder = t.clubRegistration.formFields.university;
+        formFields[3].placeholder = t.clubRegistration.formFields.clubName;
+        formFields[4].placeholder = t.clubRegistration.formFields.whatsapp;
+        formFields[5].placeholder = t.clubRegistration.formFields.role;
+        formFields[6].placeholder = t.clubRegistration.formFields.message;
+      }
+
       if (badge) badge.textContent = t.clubRegistration.badge;
       if (title) title.textContent = t.clubRegistration.title;
       if (description) description.textContent = t.clubRegistration.description;

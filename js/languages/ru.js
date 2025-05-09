@@ -59,7 +59,7 @@ const ru = {
     title:
       "Присоединяйтесь к нашему <br/> <span class='highlight-text'>сообществу</span> с The Uniflow",
     description:
-      "Наше приложение соединяет студентов и клубы, организуя тысячи событий и объединяя сотни тысяч участников.",
+      "Наше приложение соединяет студентов и клубы, организуя тысячи событий и объединяя сотни тысяч участников. В рамках этой трансформации статистика здесь обновляется реальными данными каждую неделю.",
     downloadButton: "СКАЧАТЬ СЕЙЧАС",
     stats: {
       universities: "Университеты",
@@ -170,7 +170,7 @@ const ru = {
     emailLabel: "Электронная почта",
     whatsappLabel: "Whatsapp Контакт",
     instagramLabel: "Instagram",
-    email: "info@theunifloapp.com",
+    email: "info@theuniflow.com",
     phone: "+90 500 123 45 67",
     instagramText: "DM",
   },
@@ -210,4 +210,3 @@ const ru = {
     developedByLinkText: "ERRNIFY",
   },
 };
-

@@ -58,7 +58,7 @@ const tr = {
     title:
       "The Uniflow ile <br/> <span class='highlight-text'>topluluk ekosistemimize</span> ortak olun",
     description:
-      "Bizimle, üniversite etkinlik ekosistemi dönüşerek öğrenciler ve kulüpler arasında yeni bir köprü oluşuyor. Platformumuz üzerinden binlerce etkinlik düzenleniyor ve yüzbinlerce öğrenci bir araya geliyor.",
+      "Bizimle, üniversite etkinlik ekosistemi dönüşerek öğrenciler ve kulüpler arasında yeni bir köprü oluşuyor. Buradaki istatistikler, bu dönüşümün bir parçası olarak, her hafta gerçek verilerle güncellenmektedir.",
     downloadButton: "ŞİMDİ İNDİR",
     stats: {
       universities: "Üniversite",
@@ -168,7 +168,7 @@ const tr = {
     emailLabel: "E-posta",
     whatsappLabel: "Whatsapp İletişim",
     instagramLabel: "Instagram",
-    email: "info@theunifloapp.com",
+    email: "info@theuniflow.com",
     phone: "+90 500 123 45 67",
     instagramText: "DM",
   },
@@ -178,6 +178,15 @@ const tr = {
     title: "Kulübünüzü The Uniflow'a Geçirin",
     description:
       "Üniversite kulübünüzü modern etkinlik yönetim sistemimize kaydetmek için formu doldurun. Ekibimiz en kısa sürede sizinle iletişime geçecektir.",
+    formFields: {
+      fullName: "Adınız Soyadınız *",
+      email: "E-posta Adresiniz *",
+      university: "Üniversite Adı *",
+      clubName: "Kulüp Adı *",
+      whatsapp: "WhatsApp İletişim Numaranız *",
+      role: "Kulüpteki Rolünüz (Başkan, Yönetim Kurulu Üyesi vb.) *",
+      message: "Mesajınız (İsteğe bağlı)",
+    },
     checkboxText:
       "The Uniflow'dan e-posta ve bilgilendirme mesajları almayı kabul ediyorum",
     submitButton: "Başvuru Gönder",

@@ -1,10 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Uniflow</title>
+
+    <!-- Primary Meta Tags -->
+    <title>The Uniflow - Üniversite Etkinlik Yönetim Platformu</title>
+    <meta
+      name="title"
+      content="The Uniflow - Üniversite Etkinlik Yönetim Platformu"
+    />
+    <meta
+      name="description"
+      content="Kulüplerin ve öğrencilerin etkinlik deneyimini kolaylaştıran yenilikçi platform. Etkinlik oluştur, katıl ve QR biletlerle giriş yap."
+    />
+    <meta
+      name="keywords"
+      content="theuniflow, uniflow, üniversite etkinlikleri, öğrenci kulüpleri, etkinlik yönetimi, bilet sistemi, QR kod, öğrenci etkinlikleri"
+    />
+    <meta name="author" content="Errnify" />
+    <meta name="language" content="tr" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theuniflow.com/" />
+    <meta
+      property="og:title"
+      content="The Uniflow - Üniversite Etkinlik Yönetim Platformu"
+    />
+    <meta
+      property="og:description"
+      content="Kulüplerin ve öğrencilerin etkinlik deneyimini kolaylaştıran yenilikçi platform. Etkinlik oluştur, katıl ve QR biletlerle giriş yap."
+    />
+    <meta
+      property="og:image"
+      content="https://theuniflow.com/images/og-image.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <meta rel="canonical" href="https://theuniflow.com/" />
+
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="images/site.webmanifest" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="fonts/manrope/Manrope-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/manrope/Manrope-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="css/critical.css" as="style" />
 
     <!-- icofont-css-link -->
     <link rel="stylesheet" href="css/icofont.min.css" />
@@ -18,18 +109,53 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- Responsive-Style-link -->
     <link rel="stylesheet" href="css/responsive.css" />
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- Language Files -->
+    <script src="js/languages/tr.js" defer></script>
+    <script src="js/languages/en.js" defer></script>
+    <script src="js/languages/de.js" defer></script>
+    <script src="js/languages/it.js" defer></script>
+    <script src="js/languages/ru.js" defer></script>
+    <script src="js/languages/ar.js" defer></script>
+    <script src="js/language-handler.js" defer></script>
   </head>
-  <!-- Language Files -->
-  <script src="js/languages/tr.js"></script>
-  <script src="js/languages/en.js"></script>
-  <script src="js/languages/de.js"></script>
-  <script src="js/languages/it.js"></script>
-  <script src="js/languages/ru.js"></script>
-  <script src="js/languages/ar.js"></script>
-  <script src="js/language-handler.js"></script>
   <body>
+    <!-- Coming Soon Modal -->
+    <div
+      class="modal fade"
+      id="comingSoonModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="comingSoonModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="comingSoonModalLabel">Çok Yakında!</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              The Uniflow uygulaması çok yakında Google Play Store ve App
+              Store'da yerini alacak. Bizi takip etmeye devam edin!
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+              Tamam
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Preloader -->
     <div id="preloader">
       <div id="loader"></div>
@@ -78,9 +204,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="#faq">S.S.S</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#clubs">Kulüplerimiz</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#documentation">Dokümantasyon</a>
               </li>
@@ -334,7 +460,7 @@
               <li data-aos="fade-up" data-aos-duration="1500">
                 <div class="text">
                   <p>
-                    <span class="counter-value" data-count="50">0</span
+                    <span class="counter-value" data-count="0">0</span
                     ><span>+</span>
                   </p>
                   <p>Üniversite</p>
@@ -343,7 +469,7 @@
               <li data-aos="fade-up" data-aos-duration="1500">
                 <div class="text">
                   <p>
-                    <span class="counter-value" data-count="250">0</span
+                    <span class="counter-value" data-count="2">0</span
                     ><span>+</span>
                   </p>
                   <p>Kulüp</p>
@@ -352,7 +478,7 @@
               <li data-aos="fade-up" data-aos-duration="1500">
                 <div class="text">
                   <p>
-                    <span class="counter-value" data-count="10000">0</span
+                    <span class="counter-value" data-count="5">0</span
                     ><span>+</span>
                   </p>
                   <p>Kullanıcı</p>
@@ -361,7 +487,7 @@
               <li data-aos="fade-up" data-aos-duration="1500">
                 <div class="text">
                   <p>
-                    <span class="counter-value" data-count="500">0</span
+                    <span class="counter-value" data-count="0">0</span
                     ><span>+</span>
                   </p>
                   <p>Etkinlik</p>
@@ -766,7 +892,7 @@
     </section>
     <!-- FAQ Section End -->
 
-    <!-- Kulüplerimiz -->
+    <!-- Kulüplerimiz
     <section id="clubs" class="row_am our_client page-section">
       <div class="container">
         <div class="section_title" data-aos="fade-up" data-aos-duration="1500">
@@ -776,7 +902,7 @@
             bizimle birlikte
           </h2>
         </div>
-        <!-- Kulüp Logoları -->
+        
         <ul class="client_list">
           <li>
             <div
@@ -852,7 +978,8 @@
           </li>
         </ul>
       </div>
-    </section>
+    </section> 
+  -->
 
     <!-- Documentation Section Start -->
     <section id="documentation" class="blog_section row_am page-section">
@@ -863,7 +990,11 @@
         </div>
         <div class="blog_listing">
           <div class="blog_post" data-aos="fade-up" data-aos-duration="1500">
-            <a href="#" class="img">
+            <a
+              href="https://flows-3.gitbook.io/the-uniflow"
+              target="_blank"
+              class="img"
+            >
               <img
                 src="images/manager_doc_image.png"
                 alt="Kulüp Yöneticileri İçin Rehber"
@@ -875,19 +1006,29 @@
                 <li>Detaylı Özellikler</li>
                 <li>Video Eğitim</li>
               </ul>
-              <h3><a href="#">Kulüp Yöneticileri İçin Tam Rehber</a></h3>
+              <h3>
+                <a href="https://flows-3.gitbook.io/the-uniflow" target="_blank"
+                  >Kulüp Yöneticileri İçin Tam Rehber</a
+                >
+              </h3>
               <p>
                 Etkinlik oluşturma, bilet yönetimi, üye takibi ve istatistik
                 özellikleri hakkında detaylı bilgi
               </p>
               <div class="tag_more">
                 <span class="tag">Kulüp Yönetimi</span>
-                <a href="#">Daha Fazla <i class="icofont-arrow-right"></i></a>
+                <a href="https://flows-3.gitbook.io/the-uniflow" target="_blank"
+                  >Daha Fazla <i class="icofont-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
           <div class="blog_post" data-aos="fade-up" data-aos-duration="1500">
-            <a href="#" class="img">
+            <a
+              href="https://flows-3.gitbook.io/the-uniflow"
+              target="_blank"
+              class="img"
+            >
               <img
                 src="images/student_doc_image.png"
                 alt="Öğrenciler İçin Rehber"
@@ -899,14 +1040,20 @@
                 <li>Etkinlik Katılımı</li>
                 <li>Bilet Özellikleri</li>
               </ul>
-              <h3><a href="#">Öğrenciler İçin Kullanım Rehberi</a></h3>
+              <h3>
+                <a href="https://flows-3.gitbook.io/the-uniflow" target="_blank"
+                  >Öğrenciler İçin Kullanım Rehberi</a
+                >
+              </h3>
               <p>
                 Etkinlik keşfi, katılım, bilet alma ve kulüp üyeliği özellikleri
                 hakkında bilgiler
               </p>
               <div class="tag_more">
                 <span class="tag">Öğrenci Kullanımı</span>
-                <a href="#">Daha Fazla <i class="icofont-arrow-right"></i></a>
+                <a href="https://flows-3.gitbook.io/the-uniflow" target="_blank"
+                  >Daha Fazla <i class="icofont-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -926,29 +1073,45 @@
             sponsorluk anlaşmaları ve daha fazlası için bizimle iletişime geçin.
           </p>
         </div>
-        <ul class="contact_listing">
-          <li data-aos="fade-up" data-aos-duration="1500">
-            <span class="icon">
-              <img src="images/mail_icon.png" alt="image" />
-            </span>
-            <span class="lable">E-posta</span>
-            <a href="mailto:info@theunifloapp.com">info@theunifloapp.com</a>
-          </li>
-          <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="150">
-            <span class="icon">
-              <img src="images/phone_icon.png" alt="image" />
-            </span>
-            <span class="lable">Whatsapp İletişim</span>
-            <a href="tel:+905001234567">+90 500 123 45 67</a>
-          </li>
-          <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-            <span class="icon">
-              <img src="images/location_icon.png" alt="image" />
-            </span>
-            <span class="lable">Instagram</span>
-            <a target="_blank" href="https://www.google.com/maps">DM</a>
-          </li>
-        </ul>
+        <div class="row justify-content-center contact-cards-container">
+          <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500">
+            <div class="contact-card text-center">
+              <div class="contact-icon mb-3">
+                <i class="icofont-email" style="font-size: 50px"></i>
+              </div>
+              <h5 class="contact-label">E-posta</h5>
+              <p>
+                <a href="mailto:support@theuniflow.com" class="contact-link"
+                  >support@theuniflow.com</a
+                >
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-md-5"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+            data-aos-delay="200"
+          >
+            <div class="contact-card text-center">
+              <div class="contact-icon mb-3">
+                <i
+                  class="icofont-instagram"
+                  style="font-size: 50px; color: #2fc5b6"
+                ></i>
+              </div>
+              <h5 class="contact-label">Instagram</h5>
+              <p>
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/the_uniflow/"
+                  class="contact-link"
+                  >@the_uniflow</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <!-- Contact Us Section End -->
@@ -1209,23 +1372,23 @@
               </div>
               <ul class="contact_info">
                 <li><a href="mailto:">support@theuniflow.com</a></li>
-                <li><a href="tel: ">+1-900-123 4567</a></li>
+                <!-- <li><a href="tel: ">+1-900-123 4567</a></li> -->
               </ul>
               <ul class="social_media">
                 <li>
-                  <a href="#" aria-label="Facebook"
-                    ><i class="icofont-facebook"></i
-                    ><span class="sr-only">Facebook</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" aria-label="Twitter"
-                    ><i class="icofont-twitter"></i
+                  <a
+                    href="https://www.linkedin.com/company/the-uniflow/"
+                    target="_blank"
+                    aria-label="Linkedin"
+                    ><i class="icofont-linkedin"></i
                     ><span class="sr-only">Twitter</span></a
                   >
                 </li>
                 <li>
-                  <a href="#" aria-label="Instagram"
+                  <a
+                    href="https://www.instagram.com/the_uniflow/"
+                    target="_blank"
+                    aria-label="Instagram"
                     ><i class="icofont-instagram"></i
                     ><span class="sr-only">Instagram</span></a
                   >
@@ -1329,6 +1492,8 @@
     <script src="js/typed.min.js"></script>
     <!-- main-js-Link -->
     <script src="js/main.js"></script>
+
+    <script src="js/download_buttons.js"></script>
 
     <script>
       $("#typed").typed({

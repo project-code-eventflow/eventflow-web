@@ -2359,7 +2359,9 @@ iframe#youtubevideo {
 .blog_section {
   position: relative;
 }
-
+.blog_section .row_am .page-section {
+  padding: 0 15px !important;
+}
 .blog_section .section_title {
   margin-bottom: 50px;
 }
@@ -4093,7 +4095,7 @@ footer .download_side .app_btn li a img {
 .contact_section {
   position: relative;
   padding: 80px 0 50px 0;
-  margin-top: 100px;
+  
 }
 
 .contact_section::before,

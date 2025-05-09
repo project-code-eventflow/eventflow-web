@@ -58,7 +58,7 @@ const en = {
     title:
       "Join our <br/> <span class='highlight-text'>community ecosystem</span> with The Uniflow",
     description:
-      "With us, the university event ecosystem is evolving, creating a new bridge between students and clubs. Thousands of events are organized, and hundreds of thousands of students come together through our platform.",
+      "With us, the university event ecosystem is evolving, creating a new bridge between students and clubs. The statistics here are updated with real data every week as part of this transformation.",
     downloadButton: "DOWNLOAD NOW",
     stats: {
       universities: "Universities",
@@ -168,7 +168,7 @@ const en = {
     emailLabel: "Email",
     whatsappLabel: "Whatsapp Contact",
     instagramLabel: "Instagram",
-    email: "info@theunifloapp.com",
+    email: "info@theuniflow.com",
     phone: "+90 500 123 45 67",
     instagramText: "DM",
   },
@@ -178,6 +178,15 @@ const en = {
     title: "Move Your Club to The Uniflow",
     description:
       "Fill out the form to register your university club to our modern event management system. Our team will contact you shortly.",
+    formFields: {
+      fullName: "Full Name *",
+      email: "Email Address *",
+      university: "University Name *",
+      clubName: "Club Name *",
+      whatsapp: "WhatsApp Contact Number *",
+      role: "Your Role in Club (President, Board Member, etc.) *",
+      message: "Your Message (Optional)",
+    },
     checkboxText:
       "I agree to receive emails and notifications from The Uniflow",
     submitButton: "Submit Application",
