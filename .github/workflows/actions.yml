@@ -1,0 +1,78 @@
+name: Deploy Admin Panel to Lightsail
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build React app
+      run: npm run build
+      env:
+        CI: false
+    
+    - name: Prepare deployment directory
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu  # veya eventflow
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Backup oluştur
+          if [ -d "/var/www/admin" ]; then
+            sudo cp -r /var/www/admin /var/www/admin_backup_$(date +%Y%m%d_%H%M) || true
+          fi
+          
+          # Eski dosyaları temizle
+          sudo rm -rf /var/www/admin/*
+          sudo mkdir -p /var/www/admin
+          sudo chown -R www-data:www-data /var/www/admin
+          sudo chmod -R 755 /var/www/admin
+    
+    - name: Deploy to Lightsail
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu  # veya eventflow
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        port: 22
+        source: "build/*"
+        target: "/tmp/admin_new/"
+        strip_components: 1
+    
+    - name: Move files to final location
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu  # veya eventflow
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        port: 22
+        script: |
+          # Dosyaları final konuma taşı
+          sudo mv /tmp/admin_new/* /var/www/admin/
+          
+          # Temp dizini temizle
+          rm -rf /tmp/admin_new
+          
+          # Doğru izinleri ver
+          sudo chown -R www-data:www-data /var/www/admin/
+          sudo chmod -R 755 /var/www/admin/
+          
+          echo "✅ Admin panel deployment completed!"
