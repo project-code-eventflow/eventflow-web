@@ -1,93 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Uniflow - Club</title>
-    
-    <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="Check out this club on The Uniflow">
-    <meta property="og:description" content="Join us on The Uniflow - The student event platform">
-    <meta property="og:image" content="https://theuniflow.com/images/og-image.jpg">
-    <meta property="og:type" content="website">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon/android-chrome-512x512.png"
+    />
+
+    <!-- Primary Meta Tags -->
+    <title>The Uniflow - Club | Open in App</title>
+    <meta name="title" content="The Uniflow - Club | Open in App" />
+    <meta
+      name="description"
+      content="Open this club in The Uniflow app - The global platform connecting university students, clubs, administrations, and companies."
+    />
+    <meta
+      name="keywords"
+      content="the uniflow, theuniflow, uniflow, university club, student club, campus club, club management"
+    />
+    <meta name="author" content="The Uniflow" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://theuniflow.com/club/" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2BAAA0" />
+    <meta name="msapplication-TileColor" content="#2BAAA0" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theuniflow.com/club/" />
+    <meta property="og:site_name" content="The Uniflow" />
+    <meta property="og:title" content="Check out this club on The Uniflow" />
+    <meta
+      property="og:description"
+      content="Open this club in The Uniflow app - The global platform connecting university students, clubs, administrations, and companies."
+    />
+    <meta property="og:image" content="https://theuniflow.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://theuniflow.com/club/" />
+    <meta name="twitter:title" content="Check out this club on The Uniflow" />
+    <meta
+      name="twitter:description"
+      content="Open this club in The Uniflow app - The global platform connecting university students, clubs, administrations, and companies."
+    />
+    <meta name="twitter:image" content="https://theuniflow.com/og-image.png" />
+    <meta name="twitter:creator" content="@theuniflow" />
+    <meta name="twitter:site" content="@theuniflow" />
+
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .container {
+        text-align: center;
+        color: white;
+      }
+      .logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        border-radius: 16px;
+      }
+      .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .container {
-            text-align: center;
-            color: white;
+        100% {
+          transform: rotate(360deg);
         }
-        .spinner {
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .message {
-            font-size: 18px;
-            margin-top: 20px;
-        }
+      }
+      .message {
+        font-size: 18px;
+        margin-top: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="spinner"></div>
-        <div class="message">Opening UniFlow...</div>
+      <img
+        src="/favicon/android-chrome-192x192.png"
+        alt="The Uniflow Logo"
+        class="logo"
+      />
+      <div class="spinner"></div>
+      <div class="message">Opening The Uniflow...</div>
     </div>
 
     <script>
-        // Get club ID from URL
-        const pathSegments = window.location.pathname.split('/').filter(s => s);
-        const clubId = pathSegments[1] || null;
+      // Get club ID from URL
+      const pathSegments = window.location.pathname.split("/").filter((s) => s);
+      const clubId = pathSegments[1] || null;
 
-        // Construct deep link
-        const deepLink = clubId 
-            ? `theuniflow://club/${clubId}`
-            : 'theuniflow://';
+      // Construct deep link
+      const deepLink = clubId ? `theuniflow://club/${clubId}` : "theuniflow://";
 
-        const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.errnify.eventflow';
-        const appStoreUrl = 'https://apps.apple.com/app/id6745550320';
+      const playStoreUrl =
+        "https://play.google.com/store/apps/details?id=com.errnify.eventflow";
+      const appStoreUrl = "https://apps.apple.com/app/id6745550320";
 
-        // Detect platform
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        const isAndroid = /android/i.test(userAgent);
-        const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      // Detect platform
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
-        // Try to open app
-        window.location.href = deepLink;
+      // Try to open app
+      window.location.href = deepLink;
 
-        // Fallback to store after 2 seconds
-        setTimeout(() => {
-            if (isAndroid) {
-                window.location.href = playStoreUrl;
-            } else if (isIOS) {
-                window.location.href = appStoreUrl;
-            } else {
-                // Desktop - redirect to main site
-                window.location.href = '/';
-            }
-        }, 2000);
-
-        // Alternative: Try app link intent for Android (more reliable)
-        if (isAndroid && clubId) {
-            const intentUrl = `intent://club/${clubId}#Intent;scheme=theuniflow;package=com.errnify.eventflow;S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
-            window.location.href = intentUrl;
+      // Fallback to store after 2 seconds
+      setTimeout(() => {
+        if (isAndroid) {
+          window.location.href = playStoreUrl;
+        } else if (isIOS) {
+          window.location.href = appStoreUrl;
+        } else {
+          // Desktop - redirect to main site
+          window.location.href = "/";
         }
+      }, 2000);
+
+      // Alternative: Try app link intent for Android (more reliable)
+      if (isAndroid && clubId) {
+        const intentUrl = `intent://club/${clubId}#Intent;scheme=theuniflow;package=com.errnify.eventflow;S.browser_fallback_url=${encodeURIComponent(
+          playStoreUrl
+        )};end`;
+        window.location.href = intentUrl;
+      }
     </script>
-</body>
+  </body>
 </html>

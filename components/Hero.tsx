@@ -1,9 +1,17 @@
 import React from 'react';
 import { ArrowRight, Globe2, ShieldCheck, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
 
-const Hero: React.FC = () => {
+const Hero: React.FC = React.memo(() => {
   const { t } = useLanguage();
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-100px' },
+    transition: { duration: 0.6 }
+  };
 
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50">
@@ -15,59 +23,96 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-primary-100 text-primary-700 text-sm font-semibold mb-8 fade-in-up shadow-sm hover:shadow-md transition-shadow cursor-default">
+        <motion.div 
+          {...fadeInUp}
+          className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-primary-100 text-primary-700 text-sm font-semibold mb-8 shadow-sm hover:shadow-md transition-shadow cursor-default"
+        >
           <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2 animate-pulse"></span>
           {t('hero.badge')}
-        </div>
+        </motion.div>
         
-        <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-8 leading-[1.1] fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <motion.h1 
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.1 }}
+          className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight mb-8 leading-[1.1]"
+        >
           {t('hero.titleLine1')} <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700">
             {t('hero.titleLine2')}
           </span>
-        </h1>
+        </motion.h1>
 
-        <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-10 leading-relaxed fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <motion.p 
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.2 }}
+          className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 mb-10 leading-relaxed"
+        >
           {t('hero.description')}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20 fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <a href="#stakeholders" className="group w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-full shadow-lg hover:bg-slate-800 hover:scale-105 transition-all flex items-center justify-center">
+        <motion.div 
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.3 }}
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20"
+        >
+          <a 
+            href="#stakeholders" 
+            onClick={(e) => {
+              e.preventDefault();
+              const stakeholdersElement = document.getElementById('stakeholders');
+              if (stakeholdersElement) {
+                stakeholdersElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="group w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-full shadow-lg hover:bg-slate-800 hover:scale-105 transition-all flex items-center justify-center"
+          >
             {t('hero.ctaPrimary')}
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="#global" className="w-full sm:w-auto px-8 py-4 bg-white text-slate-700 font-bold border border-slate-200 rounded-full shadow-sm hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center">
-            {t('hero.ctaSecondary')}
-          </a>
-        </div>
+        </motion.div>
 
         {/* Features Highlights with Glassmorphism */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto fade-in-up" style={{ animationDelay: '0.4s' }}>
-          <div className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all">
+        <motion.div 
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all"
+          >
             <div className="p-3 bg-blue-50 rounded-xl mb-4 text-primary-600 transform group-hover:scale-110 transition-transform">
               <Globe2 className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-slate-900">{t('hero.features.global.title')}</h3>
             <p className="text-sm text-slate-500 mt-2 text-center">{t('hero.features.global.desc')}</p>
-          </div>
-          <div className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all">
+          </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all"
+          >
             <div className="p-3 bg-blue-50 rounded-xl mb-4 text-primary-600">
               <ShieldCheck className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-slate-900">{t('hero.features.secure.title')}</h3>
             <p className="text-sm text-slate-500 mt-2 text-center">{t('hero.features.secure.desc')}</p>
-          </div>
-          <div className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all">
+          </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex flex-col items-center p-6 bg-white/60 backdrop-blur-md rounded-2xl shadow-sm border border-white/50 hover:shadow-md transition-all"
+          >
             <div className="p-3 bg-blue-50 rounded-xl mb-4 text-primary-600">
               <Zap className="h-8 w-8" />
             </div>
             <h3 className="text-lg font-bold text-slate-900">{t('hero.features.data.title')}</h3>
             <p className="text-sm text-slate-500 mt-2 text-center">{t('hero.features.data.desc')}</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

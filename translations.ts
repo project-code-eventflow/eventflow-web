@@ -143,7 +143,7 @@ export const translations = {
     contact: {
       ctaTitle: "Dönüşümün Parçası Olun",
       ctaDesc: "Üniversiteniz veya şirketiniz için The Uniflow'u keşfedin. Erken erişim ve demo için bizimle iletişime geçin.",
-      btnContact: "İletişime Geç",
+      btnContact: "WhatsApp Destek ile İletişime Geç",
       btnDownload: "Sunumu İndir",
       footerDesc: "Öğrenci kulüplerini, üniversiteleri ve markaları global bir ağda birleştiren yeni nesil etkinlik yönetim platformu.",
       colPlatform: "Platform",
@@ -294,7 +294,7 @@ export const translations = {
     contact: {
       ctaTitle: "Be Part of the Transformation",
       ctaDesc: "Discover The Uniflow for your university or company. Contact us for early access and a demo.",
-      btnContact: "Contact Us",
+      btnContact: "Contact Via WhatsApp Support",
       btnDownload: "Download Deck",
       footerDesc: "Next-generation event management platform uniting student clubs, universities, and brands in a global network.",
       colPlatform: "Platform",

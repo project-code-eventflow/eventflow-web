@@ -33,8 +33,8 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { name: t("nav.stakeholders"), href: "#stakeholders" },
     { name: t("nav.mobile"), href: "#mobile" },
+    { name: t("nav.stakeholders"), href: "#stakeholders" },
     { name: t("nav.global"), href: "#global" },
     { name: t("nav.roadmap"), href: "#roadmap" },
   ];

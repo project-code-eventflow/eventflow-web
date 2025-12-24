@@ -1,12 +1,47 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Users, Tent, Building2, Briefcase, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { StakeholderContent } from '../types';
 import SectionTitle from './SectionTitle';
 import { useLanguage } from '../LanguageContext';
 
-const StakeholderTabs: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'students' | 'clubs' | 'university' | 'companies'>('students');
+export type TabType = 'students' | 'clubs' | 'university' | 'companies';
+
+export interface StakeholderTabsRef {
+  switchTab: (tab: TabType) => void;
+}
+
+const StakeholderTabs = forwardRef<StakeholderTabsRef>((props, ref) => {
+  const [activeTab, setActiveTab] = useState<TabType>('students');
   const { t, language } = useLanguage();
+
+  useImperativeHandle(ref, () => ({
+    switchTab: (tab: TabType) => {
+      setActiveTab(tab);
+    }
+  }));
+
+  // Handle URL hash for tab switching
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#stakeholders')) {
+        // Extract tab from hash query string (e.g., #stakeholders?tab=students)
+        const hashParts = hash.split('?');
+        if (hashParts.length > 1) {
+          const params = new URLSearchParams(hashParts[1]);
+          const tabParam = params.get('tab');
+          if (tabParam && ['students', 'clubs', 'university', 'companies'].includes(tabParam)) {
+            setActiveTab(tabParam as TabType);
+          }
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const getImagePath = (stakeholderId: string): string => {
     if (stakeholderId === 'students') {
@@ -62,16 +97,29 @@ const StakeholderTabs: React.FC = () => {
 
   const activeContent = stakeholders.find(s => s.id === activeTab) || stakeholders[0];
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-100px' },
+    transition: { duration: 0.6 }
+  };
+
   return (
     <section id="stakeholders" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle 
-          title={t('tabs.heading')}
-          subtitle={t('tabs.subheading')}
-        />
+        <motion.div {...fadeInUp}>
+          <SectionTitle 
+            title={t('tabs.heading')}
+            subtitle={t('tabs.subheading')}
+          />
+        </motion.div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+        <motion.div 
+          {...fadeInUp}
+          transition={{ ...fadeInUp.transition, delay: 0.1 }}
+          className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12"
+        >
           {stakeholders.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -90,10 +138,16 @@ const StakeholderTabs: React.FC = () => {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Tab Content */}
-        <div className="bg-slate-50 rounded-3xl p-6 md:p-12 border border-slate-200 shadow-sm transition-all duration-500 ease-in-out">
+        <motion.div 
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-slate-50 rounded-3xl p-6 md:p-12 border border-slate-200 shadow-sm transition-all duration-500 ease-in-out"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Text Content */}
@@ -116,7 +170,17 @@ const StakeholderTabs: React.FC = () => {
               </ul>
 
               <div className="pt-6">
-                <a href="#contact" className="inline-flex items-center text-primary-600 font-bold hover:text-primary-800 transition-colors">
+                <a 
+                  href="#contact" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactElement = document.getElementById('contact');
+                    if (contactElement) {
+                      contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="inline-flex items-center text-primary-600 font-bold hover:text-primary-800 transition-colors"
+                >
                   {t('tabs.learnMore')} <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
               </div>
@@ -139,10 +203,12 @@ const StakeholderTabs: React.FC = () => {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-};
+});
+
+StakeholderTabs.displayName = 'StakeholderTabs';
 
 export default StakeholderTabs;
