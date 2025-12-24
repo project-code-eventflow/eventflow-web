@@ -2,23 +2,23 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  publish = "."
-  command = "echo 'No build command needed - static site'"
+  publish = "dist"
+  command = "npm run build"
 
 # Redirect Rules for Deep Linking
 [[redirects]]
   from = "/event/:eventId"
-  to = "/public/event/index.html"
+  to = "/event/index.html"
   status = 200
 
 [[redirects]]
   from = "/club/:clubId"
-  to = "/public/club/index.html"
+  to = "/club/index.html"
   status = 200
 
 [[redirects]]
   from = "/download"
-  to = "/public/download/index.html"
+  to = "/download/index.html"
   status = 200
 
 # Headers for Apple App Site Association
