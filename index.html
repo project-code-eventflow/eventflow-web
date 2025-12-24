@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon/android-chrome-512x512.png"
+    />
+
+    <!-- Primary Meta Tags -->
+    <title>
+      The Uniflow - Üniversite Etkinlik Ekosistemi | TheUniflow | Uniflow
+    </title>
+    <meta
+      name="title"
+      content="The Uniflow - Üniversite Etkinlik Ekosistemi | TheUniflow | Uniflow"
+    />
+    <meta
+      name="description"
+      content="The Uniflow (TheUniflow, Uniflow), üniversite öğrencileri, kulüpleri, yönetimleri ve şirketleri tek bir dijital çatı altında buluşturan global etkinlik ve yönetim platformudur."
+    />
+    <meta
+      name="keywords"
+      content="the uniflow, theuniflow, uniflow, the-uniflow, uni flow, the uni flow, üniversite kulüpleri, etkinlik yönetimi, öğrenci toplulukları, kampüs etkinlikleri, öğrenci kulüpleri, dijital kampüs, uniflow türkiye, uniflow tr"
+    />
+    <meta name="author" content="The Uniflow" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Turkish" />
+    <link rel="canonical" href="https://theuniflow.com/" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2BAAA0" />
+    <meta name="msapplication-TileColor" content="#2BAAA0" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="tr" href="https://theuniflow.com/" />
+    <link rel="alternate" hreflang="en" href="https://theuniflow.com/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://theuniflow.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://theuniflow.com/" />
+    <meta property="og:site_name" content="The Uniflow" />
+    <meta
+      property="og:title"
+      content="The Uniflow (TheUniflow) - Geleceğin Etkinlik Ekosistemi"
+    />
+    <meta
+      property="og:description"
+      content="The Uniflow (TheUniflow, Uniflow) - Manuel süreçlere son. Öğrenciler, Kulüpler, Üniversiteler ve Markalar için veri odaklı, bütünleşik çözüm."
+    />
+    <meta property="og:image" content="https://theuniflow.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://theuniflow.com/" />
+    <meta
+      name="twitter:title"
+      content="The Uniflow (TheUniflow, Uniflow) - Üniversite Etkinlik Ekosistemi"
+    />
+    <meta
+      name="twitter:description"
+      content="The Uniflow (TheUniflow, Uniflow) - Üniversite etkinliklerini keşfet, yönet, ölçümle. Tüm kampüsler tek bir dijital çatıda."
+    />
+    <meta name="twitter:image" content="https://theuniflow.com/og-image.png" />
+    <meta name="twitter:creator" content="@theuniflow" />
+    <meta name="twitter:site" content="@theuniflow" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                50: "#e6faf8",
+                100: "#b3f0ea",
+                200: "#80e6dc",
+                300: "#4ddcce",
+                400: "#40d2c4",
+                500: "#34D1BF",
+                600: "#2BAAA0",
+                700: "#228882",
+                800: "#1a6663",
+                900: "#114444",
+                950: "#0a2222",
+              },
+            },
+            animation: {
+              blob: "blob 7s infinite",
+            },
+            keyframes: {
+              blob: {
+                "0%": {
+                  transform: "translate(0px, 0px) scale(1)",
+                },
+                "33%": {
+                  transform: "translate(30px, -50px) scale(1.1)",
+                },
+                "66%": {
+                  transform: "translate(-20px, 20px) scale(0.9)",
+                },
+                "100%": {
+                  transform: "translate(0px, 0px) scale(1)",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+
+      /* Scroll Reveal Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Phone Frame Border */
+      .phone-border {
+        box-shadow: 0 0 0 12px #1e293b, 0 0 0 14px #334155;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+          "react/": "https://esm.sh/react@^19.2.3/",
+          "react": "https://esm.sh/react@^19.2.3",
+          "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.errnify.eventflow",
+      "sha256_cert_fingerprints": [
+        "60:CA:63:35:A9:D0:5A:4A:49:A4:6C:01:F9:82:02:01:C2:77:17:9C:FE:42:14:B8:5B:09:43:FB:2F:DE:B6:2F"
+      ]
+    }
+  }
+]

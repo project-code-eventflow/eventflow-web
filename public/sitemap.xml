@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage Turkish -->
+  <url>
+    <loc>https://theuniflow.com/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theuniflow.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://theuniflow.com/"/>
+  </url>
+  
+  <!-- Homepage English -->
+  <url>
+    <loc>https://theuniflow.com/en/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theuniflow.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://theuniflow.com/"/>
+  </url>
+  
+  <!-- Download Page -->
+  <url>
+    <loc>https://theuniflow.com/download/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Club Page -->
+  <url>
+    <loc>https://theuniflow.com/club/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Event Page -->
+  <url>
+    <loc>https://theuniflow.com/event/</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

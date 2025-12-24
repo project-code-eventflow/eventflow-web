@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Uniflow - Event</title>
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Check out this event on The Uniflow" />
+    <meta
+      property="og:description"
+      content="Join us on The Uniflow - The student event platform"
+    />
+    <meta
+      property="og:image"
+      content="https://theuniflow.com/images/og-image.jpg"
+    />
+    <meta property="og:type" content="website" />
+
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .container {
+        text-align: center;
+        color: white;
+      }
+      .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .message {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="spinner"></div>
+      <div class="message">Opening UniFlow...</div>
+    </div>
+
+    <script>
+      // Get event ID from URL
+      const pathSegments = window.location.pathname.split("/").filter((s) => s);
+      const eventId = pathSegments[1] || null;
+
+      // Construct deep link
+      const deepLink = eventId
+        ? `theuniflow://event/${eventId}`
+        : "theuniflow://";
+
+      // App Store URLs
+      const playStoreUrl =
+        "https://play.google.com/store/apps/details?id=com.errnify.eventflow";
+      const appStoreUrl = "https://apps.apple.com/app/id6745550320";
+
+      // Detect platform
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+      // Try to open app
+      window.location.href = deepLink;
+
+      // Fallback to store after 2 seconds
+      setTimeout(() => {
+        if (isAndroid) {
+          window.location.href = playStoreUrl;
+        } else if (isIOS) {
+          window.location.href = appStoreUrl;
+        } else {
+          // Desktop - redirect to main site
+          window.location.href = "/";
+        }
+      }, 2000);
+
+      // Alternative: Try app link intent for Android (more reliable)
+      if (isAndroid && eventId) {
+        const intentUrl = `intent://event/${eventId}#Intent;scheme=theuniflow;package=com.errnify.eventflow;S.browser_fallback_url=${encodeURIComponent(
+          playStoreUrl
+        )};end`;
+        window.location.href = intentUrl;
+      }
+    </script>
+  </body>
+</html>

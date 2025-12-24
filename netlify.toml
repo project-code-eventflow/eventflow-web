@@ -1,0 +1,38 @@
+# Netlify Configuration File
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  publish = "."
+  command = "echo 'No build command needed - static site'"
+
+# Redirect Rules for Deep Linking
+[[redirects]]
+  from = "/event/:eventId"
+  to = "/public/event/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/club/:clubId"
+  to = "/public/club/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/download"
+  to = "/public/download/index.html"
+  status = 200
+
+# Headers for Apple App Site Association
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Access-Control-Allow-Origin = "*"
+
+# Additional security headers (best practice)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

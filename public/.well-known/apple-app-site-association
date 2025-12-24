@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2HP579WDZY.com.errnify.theuniflow",
+        "paths": [
+          "/event/*",
+          "/club/*"
+        ]
+      }
+    ]
+  }
+}

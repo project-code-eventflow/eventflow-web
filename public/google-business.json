@@ -1,0 +1,75 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Uniflow",
+  "alternateName": ["TheUniflow", "Uniflow", "The-Uniflow", "Uni Flow"],
+  "url": "https://theuniflow.com",
+  "logo": "https://theuniflow.com/logo.png",
+  "image": "https://theuniflow.com/og-image.png",
+  "description": "The Uniflow - Global university event ecosystem. Digital platform for students, clubs, universities, and brands.",
+  "telephone": "+90-501-488-70-66",
+  "email": "support@theuniflow.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Teknopark İstanbul",
+    "addressLocality": "Istanbul",
+    "addressRegion": "Istanbul",
+    "postalCode": "34912",
+    "addressCountry": "TR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "41.0082",
+    "longitude": "28.9784"
+  },
+  "foundingDate": "2025",
+  "founder": {
+    "@type": "Organization",
+    "name": "Errnify",
+    "url": "https://errnify.com"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/the-uniflow/",
+    "https://www.instagram.com/theuniflow.tr/",
+    "https://www.instagram.com/the.uniflow/"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+90-501-488-70-66",
+      "contactType": "Customer Support",
+      "email": "support@theuniflow.com",
+      "availableLanguage": ["Turkish", "English"],
+      "areaServed": "Worldwide",
+      "contactOption": "TollFree"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+90-501-488-70-66",
+      "contactType": "Technical Support",
+      "availableLanguage": ["Turkish", "English"],
+      "areaServed": "Worldwide"
+    }
+  ],
+  "areaServed": {
+    "@type": "GeoShape",
+    "name": "Worldwide"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "The Uniflow",
+    "alternateName": ["TheUniflow", "Uniflow"],
+    "logo": "https://theuniflow.com/logo.png",
+    "slogan": "Tüm Kampüsler Tek Bir Dijital Çatıda / All Campuses Under One Digital Roof"
+  },
+  "knowsAbout": [
+    "University Event Management",
+    "Student Club Management",
+    "Campus Life Digitalization",
+    "QR Code Check-in Systems",
+    "Event Analytics",
+    "Student Communities"
+  ],
+  "keywords": "the uniflow, theuniflow, uniflow, university events, student clubs, campus management, event platform"
+}
+

@@ -1,0 +1,26 @@
+{
+  "name": "The Uniflow",
+  "shortName": "Uniflow",
+  "description": "Üniversite etkinlik ekosistemini dijitalleştiren, öğrenci, kulüp, üniversite ve markaları tek çatı altında toplayan global platform. QR kod ile etkinlik girişi, dijital üye yönetimi ve veri odaklı analitik çözümler.",
+  "version": "1.0.0",
+  "author": "The Uniflow",
+  "homepage": "https://theuniflow.com",
+  "repository": "https://github.com/theuniflow/website",
+  "keywords": [
+    "university",
+    "events",
+    "student clubs",
+    "campus life",
+    "event management",
+    "QR code",
+    "digital campus"
+  ],
+  "languages": ["tr", "en"],
+  "contactEmail": "support@theuniflow.com",
+  "socialMedia": {
+    "linkedin": "https://www.linkedin.com/company/the-uniflow/",
+    "instagramTR": "https://www.instagram.com/theuniflow.tr/",
+    "instagramEN": "https://www.instagram.com/the.uniflow/"
+  },
+  "requestFramePermissions": []
+}
