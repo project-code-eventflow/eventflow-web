@@ -11,7 +11,6 @@ export interface StakeholderContent {
   icon: LucideIcon;
   description: string;
   features: string[];
-  image: string;
   benefit: string;
 }
 
