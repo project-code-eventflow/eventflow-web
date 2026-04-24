@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reset Password</title>
+
+    <!-- Supabase via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0a0f;
+        --surface: #111118;
+        --border: rgba(255, 255, 255, 0.07);
+        --accent: #7c6dfa;
+        --accent-glow: rgba(124, 109, 250, 0.25);
+        --accent-hover: #9b8dff;
+        --text: #f0eff8;
+        --muted: #6b6a7d;
+        --error: #ff6b6b;
+        --success: #6bffb8;
+        --input-bg: rgba(255, 255, 255, 0.04);
+        --input-border: rgba(255, 255, 255, 0.1);
+        --input-focus: rgba(124, 109, 250, 0.5);
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* background orbs */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      body::before {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 109, 250, 0.12) 0%,
+          transparent 70%
+        );
+        top: -120px;
+        left: -100px;
+      }
+      body::after {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(107, 255, 184, 0.06) 0%,
+          transparent 70%
+        );
+        bottom: -80px;
+        right: -80px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 48px 44px;
+        width: 100%;
+        max-width: 440px;
+        position: relative;
+        z-index: 1;
+        box-shadow:
+          0 32px 80px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.03);
+        animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, var(--accent), #a78bfa);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        box-shadow: 0 0 24px var(--accent-glow);
+      }
+      .logo svg {
+        width: 22px;
+        height: 22px;
+        fill: white;
+      }
+
+      h1 {
+        font-family: "Syne", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(240, 239, 248, 0.7);
+        letter-spacing: 0.2px;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+
+      input[type="password"],
+      input[type="text"] {
+        width: 100%;
+        padding: 13px 44px 13px 16px;
+        background: var(--input-bg);
+        border: 1px solid var(--input-border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+      }
+      input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--input-focus);
+      }
+
+      .toggle-pw {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+      }
+      .toggle-pw:hover {
+        color: var(--text);
+      }
+      .toggle-pw svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* password strength */
+      .strength-bar {
+        display: flex;
+        gap: 4px;
+        margin-top: 8px;
+      }
+      .strength-bar span {
+        flex: 1;
+        height: 3px;
+        background: var(--border);
+        border-radius: 99px;
+        transition: background 0.3s;
+      }
+      .strength-label {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+        min-height: 16px;
+        transition: color 0.3s;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-family: "Syne", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        box-shadow: 0 4px 20px var(--accent-glow);
+        letter-spacing: 0.2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn:hover:not(:disabled) {
+        background: var(--accent-hover);
+        box-shadow: 0 6px 28px rgba(124, 109, 250, 0.4);
+        transform: translateY(-1px);
+      }
+      .btn:active:not(:disabled) {
+        transform: translateY(0);
+      }
+      .btn:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .alert {
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .alert.error {
+        background: rgba(255, 107, 107, 0.1);
+        border: 1px solid rgba(255, 107, 107, 0.25);
+        color: #ff9090;
+      }
+      .alert.success {
+        background: rgba(107, 255, 184, 0.08);
+        border: 1px solid rgba(107, 255, 184, 0.2);
+        color: #6bffb8;
+      }
+      .alert.info {
+        background: rgba(124, 109, 250, 0.08);
+        border: 1px solid rgba(124, 109, 250, 0.2);
+        color: #a89cff;
+      }
+
+      /* states */
+      #view-loading,
+      #view-form,
+      #view-success,
+      #view-invalid {
+        display: none;
+      }
+
+      /* loading spinner center */
+      #view-loading {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 24px 0;
+        text-align: center;
+      }
+      .big-spinner {
+        width: 36px;
+        height: 36px;
+        border: 3px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      .loading-text {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* invalid state */
+      #view-invalid {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 8px 0;
+      }
+      .invalid-icon {
+        font-size: 40px;
+        margin-bottom: 4px;
+      }
+      .invalid-title {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .invalid-sub {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* success */
+      #view-success {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 8px 0;
+      }
+      .success-icon {
+        width: 64px;
+        height: 64px;
+        background: rgba(107, 255, 184, 0.1);
+        border: 1px solid rgba(107, 255, 184, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .success-icon svg {
+        width: 28px;
+        height: 28px;
+        stroke: var(--success);
+        fill: none;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .success-title {
+        font-family: "Syne", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .success-sub {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 280px;
+      }
+      .redirect-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 24px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- LOADING -->
+      <div id="view-loading" style="display: flex">
+        <div class="big-spinner"></div>
+        <p class="loading-text">Verifying your link...</p>
+      </div>
+
+      <!-- INVALID LINK -->
+      <div id="view-invalid">
+        <div class="invalid-icon">🔗</div>
+        <p class="invalid-title">Link expired or invalid</p>
+        <p class="invalid-sub">
+          This password reset link is no longer valid. Links expire after 1
+          hour. Please request a new one from the app.
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <div id="view-form">
+        <div class="logo">
+          <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4z"
+            />
+          </svg>
+        </div>
+
+        <h1>New password</h1>
+        <p class="subtitle">
+          Choose a strong password. It will be updated across all your devices.
+        </p>
+
+        <div id="alert-box" class="alert"></div>
+
+        <div class="field">
+          <label for="pw1">New Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="pw1"
+              placeholder="At least 8 characters"
+              autocomplete="new-password"
+            />
+            <button
+              class="toggle-pw"
+              type="button"
+              onclick="togglePw('pw1', this)"
+              aria-label="Show password"
+            >
+              <svg
+                id="eye-pw1"
+                viewbox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+          <div class="strength-bar">
+            <span id="s1"></span><span id="s2"></span><span id="s3"></span
+            ><span id="s4"></span>
+          </div>
+          <div class="strength-label" id="strength-label"></div>
+        </div>
+
+        <div class="field">
+          <label for="pw2">Confirm Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="pw2"
+              placeholder="Repeat your password"
+              autocomplete="new-password"
+            />
+            <button
+              class="toggle-pw"
+              type="button"
+              onclick="togglePw('pw2', this)"
+              aria-label="Show password"
+            >
+              <svg
+                id="eye-pw2"
+                viewbox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn" id="submit-btn" onclick="handleSubmit()">
+          <div class="spinner" id="btn-spinner"></div>
+          <span id="btn-label">Update Password</span>
+        </button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="view-success">
+        <div class="success-icon">
+          <svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+        </div>
+        <p class="success-title">Password updated!</p>
+        <p class="success-sub">
+          Your password has been changed successfully. You can now sign in with
+          your new password.
+        </p>
+        <p class="redirect-note" id="redirect-note"></p>
+      </div>
+    </div>
+
+    <script>
+      // ============================================================
+      // CONFIGURE THESE TWO VALUES
+      // ============================================================
+      const SUPABASE_URL = "https://sjcahxdbyvmjrbsnlizk.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqY2FoeGRieXZtanJic25saXprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMTA5ODAsImV4cCI6MjA4ODg4Njk4MH0.KcGEI6y5gZASpEoMwaRL07r1zWNFFCsVvn7q_Emg3Lk";
+
+      // ============================================================
+
+      const { createClient } = supabase;
+      const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      function show(id) {
+        ["view-loading", "view-form", "view-success", "view-invalid"].forEach(
+          (v) => {
+            document.getElementById(v).style.display = "none";
+          },
+        );
+        const el = document.getElementById(id);
+        el.style.display = id === "view-form" ? "block" : "flex";
+      }
+
+      // --- On page load: detect code in URL and exchange for session ---
+      window.addEventListener("DOMContentLoaded", async () => {
+        show("view-loading");
+
+        const params = new URLSearchParams(window.location.search);
+        // Supabase sends either ?code= (PKCE) or token_hash in the hash
+        const code = params.get("code");
+        const type = params.get("type"); // 'recovery'
+        const hashParams = new URLSearchParams(
+          window.location.hash.replace("#", ""),
+        );
+        const accessToken = hashParams.get("access_token");
+        const tokenType = hashParams.get("type");
+
+        try {
+          if (code) {
+            // PKCE flow (default for mobile apps with redirectTo)
+            const { error } = await sb.auth.exchangeCodeForSession(code);
+            if (error) throw error;
+            show("view-form");
+          } else if (accessToken && tokenType === "recovery") {
+            // Implicit flow (token in URL hash)
+            const { error } = await sb.auth.setSession({
+              access_token: accessToken,
+              refresh_token: hashParams.get("refresh_token") || "",
+            });
+            if (error) throw error;
+            show("view-form");
+          } else {
+            // No token found
+            show("view-invalid");
+          }
+        } catch (err) {
+          console.error("Session error:", err);
+          show("view-invalid");
+        }
+      });
+
+      // --- Password strength ---
+      const pw1 = document.getElementById("pw1");
+      pw1.addEventListener("input", () => updateStrength(pw1.value));
+
+      function updateStrength(pw) {
+        const bars = [1, 2, 3, 4].map((i) => document.getElementById("s" + i));
+        const label = document.getElementById("strength-label");
+        const colors = {
+          1: "#ff6b6b",
+          2: "#ffb347",
+          3: "#7c6dfa",
+          4: "#6bffb8",
+        };
+        const labels = { 1: "Weak", 2: "Fair", 3: "Good", 4: "Strong" };
+
+        let score = 0;
+        if (pw.length >= 8) score++;
+        if (/[A-Z]/.test(pw)) score++;
+        if (/[0-9]/.test(pw)) score++;
+        if (/[^A-Za-z0-9]/.test(pw)) score++;
+
+        bars.forEach((b, i) => {
+          b.style.background = i < score ? colors[score] : "var(--border)";
+        });
+        label.textContent = score > 0 ? labels[score] : "";
+        label.style.color = score > 0 ? colors[score] : "var(--muted)";
+      }
+
+      // --- Toggle password visibility ---
+      function togglePw(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+        btn.querySelector("svg").innerHTML = isHidden
+          ? '<line x1="1" y1="1" x2="23" y2="23"/><path d="M10.5 6A9.77 9.77 0 0 1 12 6c7 0 11 6 11 6a20.4 20.4 0 0 1-2.34 3.16M6.53 6.53A9.94 9.94 0 0 0 1 12s4 8 11 8a9.94 9.94 0 0 0 5.47-1.53"/><circle cx="12" cy="12" r="3" fill="none"/>'
+          : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+      }
+
+      // --- Alert helper ---
+      function showAlert(msg, type = "error") {
+        const box = document.getElementById("alert-box");
+        box.textContent = msg;
+        box.className = "alert " + type;
+        box.style.display = "block";
+      }
+      function hideAlert() {
+        document.getElementById("alert-box").style.display = "none";
+      }
+
+      // --- Submit ---
+      async function handleSubmit() {
+        hideAlert();
+        const p1 = document.getElementById("pw1").value;
+        const p2 = document.getElementById("pw2").value;
+
+        if (p1.length < 8) {
+          return showAlert("Password must be at least 8 characters.");
+        }
+        if (p1 !== p2) {
+          return showAlert("Passwords do not match. Please try again.");
+        }
+
+        // Set loading state
+        const btn = document.getElementById("submit-btn");
+        const spinner = document.getElementById("btn-spinner");
+        const label = document.getElementById("btn-label");
+        btn.disabled = true;
+        spinner.style.display = "block";
+        label.textContent = "Updating...";
+
+        try {
+          const { error } = await sb.auth.updateUser({ password: p1 });
+          if (error) throw error;
+
+          show("view-success");
+        } catch (err) {
+          console.error(err);
+          showAlert(err.message || "Something went wrong. Please try again.");
+          btn.disabled = false;
+          spinner.style.display = "none";
+          label.textContent = "Update Password";
+        }
+      }
+    </script>
+  </body>
+</html>
